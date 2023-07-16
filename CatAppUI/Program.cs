@@ -1,3 +1,4 @@
+
 namespace CatAppUI
 {
     internal static class Program
