@@ -41,26 +41,19 @@ namespace CatAppUI
             mainPanel.Controls.Add(pictureBox);
             pictureBox.Location = new Point(0, 60);
 
-
-
         }
 
         //Button functionality
         private async void Button_Click(object? sender, EventArgs e)
         {
-            HttpResponseMessage response = await CatAPI.GetRandomCatPicture();
-            String s = await response.Content.ReadAsStringAsync();
-            JsonNode rootNode = JsonNode.Parse(s);
-            String imageURL = rootNode![0]!["url"].ToString();
+            CatPicture? picture = await CatAPI.GetRandomCatPicture();
+            if (picture == null)
+            {
+                return;
+            }
 
-            this.label.Text = imageURL;
-
-            this.pictureBox.Load(imageURL);
-
-            int height = rootNode![0]!["height"].GetValue<int>();
-            int width = rootNode![0]!["width"].GetValue<int>();
-
-            this.pictureBox.Size = new Size(width, height);
+            pictureBox.Size = new Size(picture.Width, picture.Height);
+            pictureBox.Load(picture.Url);
 
         }
     }
