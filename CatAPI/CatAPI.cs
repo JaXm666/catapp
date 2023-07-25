@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using System.Diagnostics;
-using System.Reflection;
+﻿using System.Diagnostics;
 using System.Text.Json;
 
 namespace KL.CatAPI
@@ -21,21 +19,19 @@ namespace KL.CatAPI
             var responseString = await response.Content.ReadAsStringAsync();
 
             try
-            {          
+            {
                 var kittyPics = JsonSerializer.Deserialize<CatPicture[]>(responseString);
-                if (kittyPics == null || kittyPics.Length == 0)
+                if (kittyPics != null && kittyPics.Length > 0)
                 {
-                    return null; 
+                    return kittyPics[0];
                 }
-
-                return kittyPics[0];
             }
             catch (Exception e)
             {
                 Debug.WriteLine(e);
-                return null;
             }
 
+            return null;
         }
     }
 }

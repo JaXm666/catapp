@@ -43,7 +43,7 @@ namespace CatAppUI
         //Button functionality
         private async void Button_Click(object? sender, EventArgs e)
         {
-            CatPicture? picture = await api.GetRandomCatPicture();
+            var picture = await api.GetRandomCatPicture();
             if (picture == null) return;
 
             this.pictureBox.Load(picture.Url);
