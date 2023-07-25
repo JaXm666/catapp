@@ -1,20 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
 
 namespace KL.CatAPI
 {
     public class CatPicture
     {
-        //string id { get; set; }
-        //string url { get; set; }
-        //int width { get; set; }
-        //int height { get; set; }
-        //bool breeds { get; set; }
-
         [JsonPropertyName("id")]
         public string? Id { get; set; }
 
